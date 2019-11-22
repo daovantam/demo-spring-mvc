@@ -13,7 +13,7 @@ public class NewDAO extends AbstractDAO<NewModel> implements INewDAO {
 
 	@Override
 	public List<NewModel> findAll() {
-		StringBuilder sql = new StringBuilder("SELECT * FROM news");
+		StringBuilder sql = new StringBuilder("SELECT * FROM new");
 		return query(sql.toString(), new NewMapper());
 	}
 

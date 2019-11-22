@@ -3,5 +3,8 @@
     <persistence-unit name="persistence-data">
         <!--định nghĩa những entity map với database tương ứng-->
         <class>com.daovantam.entity.NewEntity</class>
+        <class>com.daovantam.entity.UserEntity</class>
+        <class>com.daovantam.entity.RoleEntity</class>
+        <class>com.daovantam.entity.CategoryEntity</class>
     </persistence-unit>
 </persistence>

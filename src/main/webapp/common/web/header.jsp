@@ -24,7 +24,7 @@
                 <security:authorize access="isAnonymous()">
                     <%--khi chưa đăng nhập sẽ vào đây--%>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Đăng nhập</a>
+                        <a class="nav-link" href="<c:url value='/dang-nhap'/>">Đăng nhập</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Đăng ký</a>

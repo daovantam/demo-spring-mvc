@@ -3,6 +3,8 @@
 <%--<c:url var ="NewURL" value="/admin-new"/>--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<c:url var="newAPI" value="/api/new"/>
+<c:url var="newURL" value="/quan-tri/bai-viet/danh-sach"/>
 
 	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 	<html>
@@ -48,7 +50,7 @@
 																<i class="fa fa-plus-circle bigger-110 purple"></i>
 															</span>
 												</a>
-												<button id="btnDelete" type="button"
+												<button id="btnDelete" type="button" onclick="warningBeforeDelete()"
 														class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" data-toggle="tooltip" title='Xóa bài viết'>
 																<span>
 																	<i class="fa fa-trash-o bigger-110 pink"></i>
@@ -64,7 +66,7 @@
 											<table class="table table-bordered">
 												<thead>
 													<tr>
-														<%--<th><input type="checkbox" id="checkAll"></th>--%>
+														<th><input type="checkbox" id="checkAll"></th>
 														<th>Tên bài viết</th>
 														<th>Mô tả ngắn</th>
 														<th>Thao tác</th>
@@ -73,7 +75,7 @@
 												<tbody>
 													<c:forEach var="item" items="${model.listResult}">
 														<tr>
-															<%--<td><input type="checkbox" id="checkbox_${item.id}" value="${item.id}"></td>--%>
+															<td><input type="checkbox" id="checkbox_${item.id}" value="${item.id}"></td>
 															<td>${item.title}</td>
 															<td>${item.shortDescription}</td>
 															<td>
@@ -118,6 +120,43 @@
                     }
                 });
             });
+
+            function warningBeforeDelete() {
+                swal({
+                        title: "Xác nhận xóa",
+                        text: "Bạn có chắc chắn muốn xóa hay không!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-success",
+                        cancelButtonClass: "btn-danger",
+                        confirmButtonText: "Xác nhận",
+                        cancelButtonText: "Hủy bỏ",
+                    }).then(function(isConfirm) {
+                        if (isConfirm) {
+                            //call api delete
+							var ids = $('tbody input[type=checkbox]:checked').map(function () {
+								return $(this).val();
+                            }).get();
+							deleteNew(ids);
+                        }
+                    });
+            	}
+            	
+            	function deleteNew(data) {
+                	$.ajax({
+                        url: '${newAPI}',
+                        type: 'DELETE',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function (result) {
+                            window.location.href = "${newURL}?page=1&limit=2&message=delete_success";
+                        },
+                        error: function (error) {
+                            window.location.href = "${newURL}?page=1&limit=2&error_system";
+                        }
+					});
+					
+                }
 		</script>
 	</body>
 

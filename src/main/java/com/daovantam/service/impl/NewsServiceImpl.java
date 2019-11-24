@@ -4,9 +4,7 @@ package com.daovantam.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.daovantam.converter.CategoryConverter;
 import com.daovantam.converter.NewConverter;
-import com.daovantam.dto.CategoryDTO;
 import com.daovantam.dto.NewDTO;
 import com.daovantam.entity.CategoryEntity;
 import com.daovantam.entity.NewEntity;
@@ -69,6 +67,14 @@ public class NewsServiceImpl implements INewService {
         }
 	    return newConverter.toDTO(newRepository.save(newEntity));
     }
+
+	@Override
+	@Transactional
+	public void delete(Long[] ids) {
+		for (Long id:ids){
+			newRepository.delete(id);
+		}
+	}
 
 
 }

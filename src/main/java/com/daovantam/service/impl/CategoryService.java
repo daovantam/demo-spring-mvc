@@ -1,14 +1,12 @@
 package com.daovantam.service.impl;
 
-import com.daovantam.converter.CategoryConverter;
-import com.daovantam.dto.CategoryDTO;
+
+
 import com.daovantam.entity.CategoryEntity;
 import com.daovantam.repository.CategoryRepository;
 import com.daovantam.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
